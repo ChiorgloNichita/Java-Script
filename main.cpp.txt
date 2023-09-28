@@ -1,0 +1,4 @@
+unt main()
+{
+        return 0;
+}
