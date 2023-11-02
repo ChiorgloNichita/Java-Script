@@ -1,7 +1,7 @@
 #include <iostream>
 
 static int hello(int x) {
-    return x * 2;
+    return x + 1 ;
 }
 
 int main() {
