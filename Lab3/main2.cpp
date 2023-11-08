@@ -1,6 +1,8 @@
 #include <iostream>
 
-int hello(int x);
+static int hello(int x) {
+    return x * 2;
+}
 
 int main() {
     int result = hello(5);
