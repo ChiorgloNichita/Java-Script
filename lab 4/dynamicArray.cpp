@@ -1,17 +1,19 @@
+// dynamicArray.cpp
+
 #include "dynamicArray.h"
-#include <iostream>
-#include <algorithm>
 
-DynamicArray::DynamicArray(int capacity) : capacity(capacity), values(new int[capacity]) {}
-
-DynamicArray::~DynamicArray() {
-    delete[] values;
+DynamicArray::DynamicArray(int capacity) {
+    this->values = new int[capacity];
+    this->capacity = capacity;
 }
 
-void DynamicArray::printValues() const {
-    std::cout << "Array values: ";
-    for (int i = 0; i < length; i++) {
-        std::cout << values[i] << " ";
+void DynamicArray::coutValues() {
+    for (int i = 0; i < this->length; i++) {
+        std::cout << this->values[i] << " ";
     }
-    std::cout << "\nCurrent capacity: " << capacity << std::endl;
+    std::cout << std::endl << this->capacity << std::endl;
+}
+
+DynamicArray::~DynamicArray() {
+    delete[] values; // Освобождаем память в деструкторе
 }
