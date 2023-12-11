@@ -1,49 +1,72 @@
-#include <iostream>
-#include <cassert>
-#include <span>
-#include <algorithm>
+// main.cpp
 
 #include "dynamicArray.h"
+#include <iostream>
 
-int main() {
-  // Тест 1: Создание динамического массива с пользовательской емкостью
-  DynamicArray arr1(10);
-  assert(arr1.capacity == 10);
-  std::cout << " Выполнен" << std::endl;
-
-  // Тест 2: Создание динамического массива с емкостью по умолчанию
-  DynamicArray arr2;
-  assert(arr2.capacity == 5);
-  std::cout << "Выполнен" << std::endl;
-
-  // Тест 3: Добавление элементов и расширение емкости
-  addElementToArray(arr2, 5);
-  assert(arr2.capacity == 5);
-  addElementToArray(arr2, 10);
-  assert(arr2.capacity == 10);
-  addElementToArray(arr2, 20);
-  assert(arr2.capacity == 20);
-  std::cout << "Выполнен" << std::endl;
-
-  // Тест 4: Получение элемента по индексу
-  int элемент = getElementAtIndex(arr2, 2);
-  assert(элемент == 20);
-  std::cout << "Выполнен" << std::endl;
-
-  // Тест 5: Добавление еще одного элемента и доступ к span
-  addElementToArray(arr2, 30);
-  std::span<int> span = getCurrentSpan(&arr2);
-  assert(span.size() == 4);
-  assert(span[0] == 5 && span[1] == 10 && span[2] == 20 && span[3] == 30);
-  std::cout << "Выполнен" << std::endl;
-
-  // Тест 6: Уничтожение динамических массивов
-  destroyDynamicArray(&arr1);
-  destroyDynamicArray(&arr2);
-  assert(arr1.values == nullptr && arr2.values == nullptr);
-  std::cout << "Выполнен" << std::endl;
-
-  std::cout << "Все тесты выполнены." << std::endl;
-
-  return 0;
+// Тест 1: Создание массива с начальной емкостью
+static void test1()
+{
+    DynamicArray arr(10);
+    assert(arr.getCapacity() == 10);
 }
+
+// Тест 2: Создание массива с емкостью по умолчанию и добавление элемента
+static void test2()
+{
+    DynamicArray arr;
+    assert(arr.getLength() == 0);
+    addElementToArray(&arr, 5);
+    assert(arr.getLength() == 1);
+}
+
+// Тест 3: Создание массива с начальной емкостью и добавление элементов
+static void test3()
+{
+    DynamicArray arr(1);
+    addElementToArray(&arr, 5);
+    assert(arr.getCapacity() == 1);
+    addElementToArray(&arr, 10);
+    assert(arr.getCapacity() == 2);
+    addElementToArray(&arr, 20);
+    assert(arr.getCapacity() == 4);
+}
+
+// Тест 4: Создание массива, добавление элемента и доступ к элементу по индексу
+static void test4()
+{
+    DynamicArray arr;
+    addElementToArray(&arr, 5);
+    int el = arr.getElementAtIndex(0);
+    assert(el == 5);
+}
+
+// Тест 5: Создание массива, добавление нескольких элементов и получение текущего  вектора
+static void test5()
+{
+    DynamicArray arr{};
+    addElementToArray(&arr, 5);
+    addElementToArray(&arr, 6);
+    addElementToArray(&arr, 7);
+
+    std::vector<int> vec = getCurrentVector(&arr);
+
+    assert(vec.size() == 3);
+    assert(vec[0] == 5);
+    assert(vec[1] == 6);
+    assert(vec[2] == 7);
+}
+
+int main()
+{
+    // Запуск тестов
+    test1();
+    test2();
+    test3();
+    test4();
+    test5();
+
+    std::cout << "All tests passed!" << std::endl;
+
+    return 0;
+}
+

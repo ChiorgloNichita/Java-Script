@@ -1,35 +1,44 @@
 // dynamicArray.h
 
-#pragma once
-#include <iostream>
+#ifndef DYNAMIC_ARRAY_H
+#define DYNAMIC_ARRAY_H
 
-struct DynamicArray {
-    int* values;
-    int length;
-    int capacity;
+#include <cassert>
+#include <algorithm>
+#include <vector>
 
-    // Функция для выделения памяти и инициализации массива
-    void init(int initialCapacity) {
-        length = 0;
-        // Убеждаемся, что capacity как минимум 1
-        capacity = (initialCapacity > 0) ? initialCapacity : 1;
-        values = new int[capacity];
-    }
+struct DynamicArray
+{
+    int *data;       // Указатель на массив данных
+    size_t capacity;  // Емкость массива
+    size_t length;    // Текущая длина массива
 
-    // Функция для вывода значений массива
-    void coutValues() const {
-        for (int i = 0; i < length; i++) {
-            std::cout << values[i] << " ";
-        }
-        std::cout << std::endl;
-    }
+    // Конструктор с параметром (начальная емкость)
+    DynamicArray(size_t capacity = 4) : data(new int[capacity]), capacity(capacity), length(0) {}
 
-    // Функция для освобождения памяти
-    void freeMemory() {
-        delete[] values;
-        length = 0;
-        capacity = 0;
-        values = nullptr; 
-    }
+    // Деструктор для освобождения памяти
+    ~DynamicArray() { delete[] data; }
+
+    // Получение текущей емкости массива
+    inline size_t getCapacity() const { return capacity; }
+
+    // Получение текущей длины массива
+    inline size_t getLength() const { return length; }
+
+    // Добавление элемента в массив
+    void addElement(int element);
+    
+    // Получение элемента по индексу с проверкой длины
+    int getElementAtIndex(size_t index) const;
+    
+    // Получение текущего  массива в виде std::vector потому что компилятор не поддерживает span
+    std::vector<int> getCurrentVector() const;
 };
 
+// Функция для добавления элемента в массив
+void addElementToArray(DynamicArray *array, int element);
+
+// Функция для получения текущего массива в виде std::vector
+std::vector<int> getCurrentVector(const DynamicArray *array);
+
+#endif // DYNAMIC_ARRAY_H
