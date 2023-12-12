@@ -9,15 +9,15 @@
 
 struct DynamicArray
 {
-    int *data;       // Указатель на массив данных
+    int* data;       // Указатель на массив данных
     size_t capacity;  // Емкость массива
     size_t length;    // Текущая длина массива
 
     // Конструктор с параметром (начальная емкость)
-    DynamicArray(size_t capacity = 4) : data(new int[capacity]), capacity(capacity), length(0) {}
+    DynamicArray(size_t capacity = 4);
 
     // Деструктор для освобождения памяти
-    ~DynamicArray() { delete[] data; }
+    ~DynamicArray();
 
     // Получение текущей емкости массива
     inline size_t getCapacity() const { return capacity; }
@@ -27,18 +27,18 @@ struct DynamicArray
 
     // Добавление элемента в массив
     void addElement(int element);
-    
+
     // Получение элемента по индексу с проверкой длины
     int getElementAtIndex(size_t index) const;
-    
-    // Получение текущего  массива в виде std::vector потому что компилятор не поддерживает span
+
+    // Получение текущего массива в виде std::vector
     std::vector<int> getCurrentVector() const;
 };
 
 // Функция для добавления элемента в массив
-void addElementToArray(DynamicArray *array, int element);
+void addElementToArray(DynamicArray* array, int element);
 
 // Функция для получения текущего массива в виде std::vector
-std::vector<int> getCurrentVector(const DynamicArray *array);
+std::vector<int> getCurrentVector(const DynamicArray* array);
 
 #endif // DYNAMIC_ARRAY_H
