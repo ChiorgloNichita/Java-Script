@@ -19,7 +19,7 @@ struct DynamicArray
     // Деструктор для освобождения памяти
     ~DynamicArray();
 
-    // Получение текущей емкости массива
+    // Получение текущей емкости массива    
     inline size_t getCapacity() const { return capacity; }
 
     // Получение текущей длины массива
