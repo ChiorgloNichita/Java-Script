@@ -146,9 +146,9 @@ analyzer.addToAllString();
 // console.log(analyzer.getTransactionsByMerchant('DoughnutShop789'));
 // console.log(analyzer.calculateAverageTransactionAmount());
 // console.log(analyzer.getTransactionsByAmountRange(80,100));
-// console.log(analyzer.calculateTotalDebitAmount());
-// console.log(analyzer.findMostTransactionsMonth());
-// console.log(analyzer.findMostDebitTransactionMonth());
+//console.log(analyzer.calculateTotalDebitAmount());
+//console.log(analyzer.findMostTransactionsMonth());
+//console.log(analyzer.findMostDebitTransactionMonth());
 // console.log(analyzer.mostTransactionTypes());
 // console.log(analyzer.getTransactionsBeforeDate(new Date('2019-01-06')))
 // console.log(analyzer.findTransactionById(26))
