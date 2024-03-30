@@ -68,7 +68,9 @@ class TransactionAnalyzer {
     }
 
     getTransactionsByAmountRange(minAmount, maxAmount) {
-        return this.transactions.filter((transaction) => transaction.transaction_amount >= minAmount && transaction.transaction_amount <= maxAmount);
+        return this.transactions.filter((transaction) => {
+            return transaction.transaction_amount >= minAmount && transaction.transaction_amount <= maxAmount;
+        })
     }
 
     calculateTotalDebitAmount() {
@@ -119,12 +121,10 @@ class TransactionAnalyzer {
     }
 
     getTransactionsBeforeDate(date) {
-        if (!(date instanceof Date) || isNaN(date)) {
-            throw new Error('Invalid date provided');
-        }
-        return this.transactions.filter((transaction) => new Date(transaction.transaction_date) < date);
+        return this.transactions.filter((transaction) => {
+            return transaction.transaction_date < date;
+        })
     }
-
     findTransactionById(id) {
         const transaction = this.transactions.find((transaction) => transaction.transaction_id === id);
         return transaction || {};
