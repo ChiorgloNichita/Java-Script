@@ -1,4 +1,9 @@
-// Асинхронная функция getRandomActivity, которая делает запрос к API для получения случайной активности
+/**
+ * Асинхронная функция, которая делает запрос к API для получения случайной активности.
+ * @async
+ * @function getRandomActivity
+ * @returns {Promise<string>} Случайная активность
+ */
 async function getRandomActivity() {
     try {
         // Отправка запроса к API

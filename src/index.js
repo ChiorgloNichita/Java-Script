@@ -1,7 +1,12 @@
 // Импорт функции getRandomActivity из модуля activity.js
 import { getRandomActivity } from './activity.js';
 
-// Асинхронная функция updateActivity, которая обновляет активность
+/**
+ * Асинхронная функция, которая обновляет активность.
+ * @async
+ * @function updateActivity
+ * @returns {void}
+ */
 async function updateActivity() {
     try {
         // Получение случайной активности с помощью функции getRandomActivity
