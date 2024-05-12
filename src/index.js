@@ -1,24 +1,23 @@
-// Импорт функции getRandomActivity из модуля activity.js
 import { getRandomActivity } from './activity.js';
 
 /**
- * Асинхронная функция, которая обновляет активность.
- * @async
- * @function updateActivity
- * @returns {void}
+ * Обновляет активность с интервалом в минуту, используя функцию getRandomActivity.
  */
 async function updateActivity() {
     try {
         // Получение случайной активности с помощью функции getRandomActivity
         const activity = await getRandomActivity();
-        // Вывод полученной активности в консоль
-        console.log('Activity:', activity);
+        // Обновление содержимого элемента с идентификатором "activity" новой активностью
+        document.getElementById('activity').innerText = activity;
     } catch (error) {
         // Обработка ошибок при получении активности
         console.error('Error fetching activity:', error.message);
     } finally {
         // Установка таймера для следующего обновления активности через минуту
-        setTimeout(updateActivity, 60000);
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(updateActivity, 1000); // Задержка в 1 секунду перед вызовом updateActivity()
+        });
+        
     }
 }
 

@@ -1,10 +1,9 @@
 /**
- * Асинхронная функция, которая делает запрос к API для получения случайной активности.
- * @async
- * @function getRandomActivity
- * @returns {Promise<string>} Случайная активность
+ * Получает случайную активность с помощью запроса к API.
+ * @returns {Promise<string>} Строка с описанием случайной активности.
+ * @throws {Error} Если не удалось получить активность.
  */
-async function getRandomActivity() {
+export async function getRandomActivity() {
     try {
         // Отправка запроса к API
         const response = await fetch('https://www.boredapi.com/api/activity/');
@@ -22,6 +21,3 @@ async function getRandomActivity() {
         throw new Error('Failed to fetch activity');
     }
 }
-
-// Экспорт функции getRandomActivity для использования в других модулях
-export { getRandomActivity };
